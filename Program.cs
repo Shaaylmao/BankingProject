@@ -58,6 +58,7 @@ namespace BankingProject
     }
     public class AccountContext : DbContext
     {
+        public AccountContext() : base("name = MyContextDB") { }
         public DbSet<AccountMaster> Accounts { get; set; }
     }
     internal class Program
@@ -68,7 +69,7 @@ namespace BankingProject
             {
                 for (; ; )
                 {
-                    Console.WriteLine("Please choose an option - 1. Create New Account 2. Exit");
+                    Console.WriteLine("Please choose an option - 1. Create New Account 2. Update Account Details  3. Deactivate Account 4. Exit");
                     string choice = Console.ReadLine();
                     if (choice == "1")
                     {
@@ -88,8 +89,17 @@ namespace BankingProject
                         Console.Write("Enter your PAN Card ID: ");
                         acc.PANCardID = Console.ReadLine();
 
+                        Console.Write("Enter your Date of birth: ");
+                        acc.DateOfBirth = Convert.ToDateTime(Console.ReadLine());
+
+                        Console.Write("Enter your Gender: ");
+                        acc.Gender = Console.ReadLine();
+
                         Console.Write("Enter your account type (Savings or Current): ");
                         acc.AccountType = Console.ReadLine();
+
+                        Console.Write("Enter your account type (Savings or Current): ");
+                        acc.BankBranch = Console.ReadLine();
 
                         Console.Write("Enter your phone number (10 digits): ");
                         acc.PhoneNumber = Console.ReadLine();
@@ -110,6 +120,104 @@ namespace BankingProject
                         Console.WriteLine("Account successfully created.");
                     }
                     if (choice == "2")
+                    {
+                        Console.WriteLine("Enter AccountNumber to update:");
+                        string inputtedAcNo = Console.ReadLine();
+                        var AcToUpdate = db.Accounts.Find(inputtedAcNo);
+
+                        if (AcToUpdate != null)
+                        {
+                            Console.WriteLine("Please choose an option - 1. Update Name 2. Update Account Type");
+                            string UpdateChoice = Console.ReadLine();
+                            if (UpdateChoice == "1") 
+                            {
+                                Console.WriteLine("Enter new first name.");
+                                string newfirstname = Console.ReadLine();
+                                AcToUpdate.FirstName = newfirstname;
+                                Console.WriteLine("Enter new last name.");
+                                string newlastname = Console.ReadLine();
+                                AcToUpdate.LastName = newlastname;
+                            }
+                            if (UpdateChoice == "2")
+                            {
+                                Console.WriteLine("Your current account type is: " + AcToUpdate.AccountType);
+
+                                if (AcToUpdate.AccountType == "Savings")
+                                {
+                                    Console.WriteLine("Would you like to change the account type to 'Current'? (Y/N)");
+                                    choice = Console.ReadLine();
+
+                                    if (choice== "Y")
+                                    {
+                                        AcToUpdate.AccountType = "Current";
+                                        Console.WriteLine("Account type updated to 'Current'.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("No changes made to the account type.");
+                                    }
+                                }
+                                else if (AcToUpdate.AccountType == "Current")
+                                {
+                                    Console.WriteLine("Would you like to change the account type to 'Savings'? (Y/N)");
+                                    choice = Console.ReadLine();
+
+                                    if (choice == "Y")
+                                    {
+                                        AcToUpdate.AccountType = "Savings";
+                                        Console.WriteLine("Account type updated to 'Savings'.");
+                                    }
+                                    else
+                                    {
+                                        Console.WriteLine("No changes made to the account type.");
+                                    }
+                                }
+                            }
+                            db.SaveChanges();
+                            Console.WriteLine("Account details updated successfully!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Account Number not found.");
+                        }
+                    }
+                    if (choice == "3")
+                    {
+                        Console.WriteLine("Enter Account Number to deactivate:");
+                        string inputtedAcNo = Console.ReadLine();
+                        var AccountToDeactivate = db.Accounts.Find(inputtedAcNo);
+
+                        if (AccountToDeactivate != null)
+                        {
+                            if (AccountToDeactivate.IsActive)
+                            {
+                                AccountToDeactivate.IsActive = false;
+                                Console.WriteLine("Account deactivated successfully!");
+                            }
+                            else
+                            {
+                                Console.WriteLine("Account is already deactivated. Would you like to reactivate it? (Y/N)");
+                                string reactivateChoice = Console.ReadLine();
+                                if (reactivateChoice == "Y")
+                                {
+                                    AccountToDeactivate.IsActive = true;
+                                    Console.WriteLine("Account reactivated successfully!");
+                                }
+                                else
+                                {
+                                    Console.WriteLine("No changes made to the account.");
+                                }
+                            }
+
+                            db.SaveChanges();
+                            Console.WriteLine("Account details updated successfully!");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Account Number not found.");
+                        }
+                    }
+                    if (choice == "4")
                     {
                         break; ;
                     }

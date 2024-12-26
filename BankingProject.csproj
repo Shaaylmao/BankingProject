@@ -53,6 +53,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AccountMaster.cs" />
+    <Compile Include="ATMFunctions.cs" />
     <Compile Include="Migrations\202410201202094_InitialCreate.cs" />
     <Compile Include="Migrations\202410201202094_InitialCreate.Designer.cs">
       <DependentUpon>202410201202094_InitialCreate.cs</DependentUpon>
@@ -60,6 +62,26 @@
     <Compile Include="Migrations\202410201456098_CreateNewAccountInit.cs" />
     <Compile Include="Migrations\202410201456098_CreateNewAccountInit.Designer.cs">
       <DependentUpon>202410201456098_CreateNewAccountInit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202412151459238_ATMFunctionsNew.cs" />
+    <Compile Include="Migrations\202412151459238_ATMFunctionsNew.Designer.cs">
+      <DependentUpon>202412151459238_ATMFunctionsNew.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202412260518155_AddATMFunctionsTable.cs" />
+    <Compile Include="Migrations\202412260518155_AddATMFunctionsTable.Designer.cs">
+      <DependentUpon>202412260518155_AddATMFunctionsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202412261457096_AtmC.cs" />
+    <Compile Include="Migrations\202412261457096_AtmC.Designer.cs">
+      <DependentUpon>202412261457096_AtmC.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202412261501092_ATMTest.cs" />
+    <Compile Include="Migrations\202412261501092_ATMTest.Designer.cs">
+      <DependentUpon>202412261501092_ATMTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202412261507554_RemoveValidation.cs" />
+    <Compile Include="Migrations\202412261507554_RemoveValidation.Designer.cs">
+      <DependentUpon>202412261507554_RemoveValidation.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Program.cs" />
@@ -75,6 +97,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202410201456098_CreateNewAccountInit.resx">
       <DependentUpon>202410201456098_CreateNewAccountInit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412151459238_ATMFunctionsNew.resx">
+      <DependentUpon>202412151459238_ATMFunctionsNew.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412260518155_AddATMFunctionsTable.resx">
+      <DependentUpon>202412260518155_AddATMFunctionsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412261457096_AtmC.resx">
+      <DependentUpon>202412261457096_AtmC.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412261501092_ATMTest.resx">
+      <DependentUpon>202412261501092_ATMTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202412261507554_RemoveValidation.resx">
+      <DependentUpon>202412261507554_RemoveValidation.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
